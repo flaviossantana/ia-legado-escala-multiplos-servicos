@@ -1,0 +1,19 @@
+Apresentando o instrutor e o curso
+Olá, bem-vindo a mais um curso aqui na Alura. Meu nome é Charleston Josué Campos.
+
+Audiodescrição: Charleston é um homem negro, com cabelo cacheado e barba longa. Ele está entusiasmado para realizar implementações em um projeto legado utilizando IA.
+
+Introduzindo o projeto RotaLog e suas funcionalidades
+Neste curso, vamos aplicar e utilizar o Cloud Code junto ao projeto legado chamado RotaLog. O RotaLog é um projeto construído com muita dedicação pelas pessoas desenvolvedoras que trabalharam nele. Podemos visualizar uma parte dessa aplicação, que, no front-end, está dividida em duas partes.
+
+Uma parte permite verificar e visualizar os pedidos que saem de um local determinado e se chegaram ao seu destinatário final. Chamamos essa parte da aplicação de rastreamento. A outra parte é o painel administrativo, onde podemos consultar e verificar cada veículo da frota, identificar se necessita de manutenção específica e saber exatamente o estado atual de cada veículo.
+
+Explorando o uso de inteligência artificial no projeto
+Estamos muito animados para apresentar o Cloud Code à aplicação RotaLog e mostrar como a inteligência artificial pode nos ajudar, proporcionando diversos recursos para entregas mais rápidas e consistentes. Além disso, teremos um assistente virtual para colaborar na construção de novas funcionalidades e refatorações em um projeto legado.
+
+Pedimos que prestem bastante atenção, pois nosso foco não será a estética tecnológica aplicada no RotaLog, mas sim como a inteligência artificial pode nos auxiliar no desenvolvimento de novas funcionalidades e refatorações nessas aplicações. Embora a estética tecnológica não seja nosso foco, estamos trabalhando com diversas tecnologias, como Java, .NET, JavaScript com Node.js e alguns outros frameworks de JavaScript dentro desse ecossistema.
+
+Preparando-se para o curso
+Portanto, temos várias tecnologias e linguagens, e veremos como a inteligência artificial pode nos ajudar a criar funcionalidades, adicionar testes e verificar se tudo está funcionando perfeitamente. Isso é exatamente o que exploraremos ao longo deste curso.
+
+Preparem-se, peguem um café, e nos encontramos no próximo vídeo. Até breve!

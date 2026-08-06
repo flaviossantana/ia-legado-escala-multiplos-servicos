@@ -1,0 +1,222 @@
+Preparando o ambiente
+Discutir no fórum
+Boas-vindas estudante!
+Se você já teve que lidar com código legado, múltiplos serviços, padrões inconsistentes ou aquele sistema que "funciona, mas ninguém sabe como", você está no lugar certo. Aqui, vamos sair do cenário ideal e mergulhar na realidade: sistemas complexos, com histórico, decisões antigas e desafios de escala, exatamente como acontece no dia a dia das empresas. Só que agora, vamos usar IA como uma aliada para entender, navegar, refatorar e evoluir esses sistemas.
+
+Entenda o projeto
+Vamos trabalhar com o projeto RotaLog, uma aplicação de rastreamento de frotas, para simular um ambiente real de trabalho: um monorepo com múltiplas aplicações, incluindo backend em Java, Node.js e .NET, além de frontends em Angular e React, integrados por meio de APIs e infraestrutura com Docker.
+
+O projeto está dividido em 5 repositórios no GitHub:
+
+rotalog-workspace, infraestrutura (Docker Compose, banco de dados PostgreSQL)
+rotalog-api-frotas, API em Java/Spring Boot
+rotalog-api-entregas, API em Node.js/Express
+rotalog-api-notificacoes, API em .NET Core 6
+rotalog-frontend, monorepo NX com Angular 18 e React 18
+Para acompanhar o passo a passo do curso, clone todos os repositórios e organize na sua máquina conforme a estrutura que vamos usar nos vídeos (mais sobre isso já já).
+
+O que precisa instalar
+Para acompanhar as aulas, você vai precisar ter instalado na sua máquina:
+
+Docker e Docker Compose,
+Node.js (versão 18 ou superior),
+NX, npm install -g nx (ou use via npx nx sem instalar globalmente),
+Java 11 (JDK), Maven, .NET 6 SDK,
+Claude Code, npm install -g @anthropic-ai/claude-code (precisa de conta na Anthropic).
+Se for usar Cursor ou outra ferramenta, configura ela antes de começar.
+Abaixo, o passo a passo para cada sistema operacional. Se alguma coisa já estiver instalada, pula para o próximo item.
+
+Instalação no macOS
+Docker Desktop: Baixe e instale pelo site oficial do Docker. O Docker Compose já vem incluso.
+Node.js 18+: A forma mais prática é usar o Homebrew:
+
+Copiar
+brew install node@18
+
+Se preferir, pode baixar direto do site do Node.js.
+3. Java 11: Pelo Homebrew:
+
+
+Copiar
+brew install openjdk@11
+
+Depois, siga a instrução que aparece no terminal para configurar o JAVA_HOME. Normalmente é algo como:
+
+
+Copiar
+sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+
+Maven: Pelo Homebrew:
+
+Copiar
+brew install maven
+
+.NET 6 SDK: Pelo Homebrew:
+
+Copiar
+brew install dotnet@6
+
+O .NET 6 já saiu de suporte oficial da Microsoft, mas funciona normalmente para o nosso projeto. Se o Homebrew avisar sobre isso, pode seguir sem problema.
+6. NX (opcional): Se quiser instalar globalmente:
+
+
+Copiar
+npm install -g nx
+
+Se preferir não instalar, pode usar npx nx sempre que precisar. As duas formas funcionam.
+7. Claude Code:
+
+
+Copiar
+npm install -g @anthropic-ai/claude-code
+
+Instalação no Windows
+Docker Desktop: Baixe e instale pelo site oficial. Durante a instalação, habilite o WSL 2 quando solicitado, o Docker no Windows depende dele.
+O WSL 2 precisa estar habilitado. Se nunca usou, o próprio instalador do Docker vai guiar, mas pode ser que precise reiniciar a máquina e habilitar a virtualização na BIOS. Se travar nessa parte, a documentação da Microsoft sobre WSL ajuda bastante.
+
+Node.js 18+: Baixe o instalador .msi no site do Node.js. Escolha a versão LTS.
+Java 11: Baixe o JDK 11 pelo Adoptium (Eclipse Temurin). Durante a instalação, marque a opção para configurar o JAVA_HOME automaticamente.
+Maven: Baixe pelo site oficial do Maven e siga as instruções de instalação. Basicamente é extrair o zip, adicionar a pasta bin ao PATH e garantir que o JAVA_HOME já está configurado.
+Se preferir algo mais prático, pode usar o Chocolatey: choco install maven.
+
+.NET 6 SDK: Baixe pelo site oficial da Microsoft. Escolha o instalador do SDK para Windows.
+NX (opcional): npm install -g nx, ou use npx nx sem instalar globalmente.
+Claude Code:
+
+Copiar
+npm install -g @anthropic-ai/claude-code
+
+Rode esse comando no terminal de preferência (PowerShell, CMD ou terminal do VS Code). Se der erro de permissão, tente abrir o terminal como administrador.
+
+Instalação no Linux (Ubuntu/Debian)
+Docker e Docker Compose: Siga a documentação oficial do Docker para Linux. Depois de instalar, adicione seu usuário ao grupo docker para não precisar de sudo:
+
+Copiar
+sudo usermod -aG docker $USER
+
+Faça logout e login novamente para aplicar.
+2. Node.js 18+: Usando o NodeSource:
+
+
+Copiar
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+Java 11:
+
+Copiar
+sudo apt-get install -y openjdk-11-jdk
+
+Maven:
+
+Copiar
+sudo apt-get install -y maven
+
+.NET 6 SDK: Siga as instruções oficiais da Microsoft para Ubuntu.
+Dependendo da versão do Ubuntu, pode ser necessário adicionar o repositório da Microsoft manualmente. A documentação cobre isso.
+
+NX (opcional): npm install -g nx, ou use npx nx sem instalar globalmente.
+Claude Code:
+
+Copiar
+npm install -g @anthropic-ai/claude-code
+
+Organizando o workspace
+Nos vídeos do curso, nós trabalhamos com todos os repositórios dentro de uma mesma pasta rotalog/, aberta como um workspace no VS Code. Isso facilita navegar entre os serviços e é onde o Claude Code vai ser executado.
+
+Crie uma pasta rotalog e clone todos os repositórios dentro dela:
+
+
+Copiar
+mkdir rotalog
+cd rotalog
+git clone https://github.com/alura-cursos/rotalog-workspace.git
+git clone https://github.com/alura-cursos/rotalog-api-frotas.git
+git clone https://github.com/alura-cursos/rotalog-api-entregas.git
+git clone https://github.com/alura-cursos/rotalog-api-notificacoes.git
+git clone https://github.com/alura-cursos/rotalog-frontend.git
+
+No final, a estrutura vai ficar assim:
+
+
+Copiar
+rotalog/
+├── rotalog-api-entregas/
+├── rotalog-api-frotas/
+├── rotalog-api-notificacoes/
+├── rotalog-frontend/
+├── rotalog-workspace/
+
+Para abrir tudo como workspace no VS Code, use o arquivo IA.code-workspace que está na raiz:
+
+
+Copiar
+code IA.code-workspace
+
+Essa é a mesma organização que você vai ver nos vídeos. Manter essa estrutura vai facilitar bastante acompanhar as aulas.
+
+Subindo o ambiente
+Antes de qualquer coisa, suba o banco de dados. Ele é a base que todas as APIs precisam:
+
+
+Copiar
+cd rotalog-workspace
+docker-compose up -d postgres
+
+Na primeira execução, o Docker vai criar os schemas (frotas, entregas, notificacoes) e popular as tabelas automaticamente com dados de exemplo.
+
+Antes de seguir, confirme que o container está rodando. No terminal:
+
+
+Copiar
+docker ps
+
+O importante é que o container rotalog-db apareça com a imagem postgres:14 e o status Up. Pelo Docker Desktop, você encontra essa informação em Containers, o rotalog-db deve estar com o status Running. Se ele não estiver rodando, as APIs vão falhar na conexão com o banco e você vai ver erros na hora de subir os serviços.
+
+Se em algum momento precisar resetar o banco (por exemplo, depois de alterar scripts de migração), use docker-compose down -v para destruir o volume do PostgreSQL. Um simples docker-compose down sem o -v mantém os dados antigos e os scripts de inicialização não vão rodar de novo.
+
+Depois, suba cada API no terminal correspondente:
+
+API Frotas (porta 8080):
+
+
+Copiar
+cd rotalog-api-frotas
+mvn spring-boot:run
+
+API Entregas (porta 3000):
+
+
+Copiar
+cd rotalog-api-entregas
+npm install
+npm start
+
+API Notificações (porta 5000):
+
+
+Copiar
+cd rotalog-api-notificacoes
+dotnet restore
+dotnet run
+
+Não precisa subir tudo de uma vez para acompanhar as aulas, vamos indicando o que precisa estar rodando em cada momento.
+
+Para o frontend, se quiser testar:
+
+
+Copiar
+cd rotalog-frontend
+npm install
+nx run-many --target=serve --projects=painel-admin,rastreamento
+
+Se você não instalou o NX globalmente, use npx no lugar:
+
+
+Copiar
+npx nx run-many --target=serve --projects=painel-admin,rastreamento
+
+Sobre a ferramenta de IA
+Por aqui, vou usar o Claude Code durante o curso inteiro. É uma opção por familiaridade e a que mais uso no meu dia a dia, mas se prefere usar outra ferramenta, dá para acompanhar.
+
+O fluxo é o mesmo: dar contexto, pedir, revisar, iterar. O que muda é a interface e, às vezes, a qualidade do output dependendo do modelo por trás. Mas isso não dificulta sua aprendizagem.
